@@ -154,6 +154,7 @@ activemq-data/
 .envrc
 .venv
 env/
+env_dsk/
 venv/
 ENV/
 env.bak/
@@ -231,6 +232,12 @@ approaches/DiT/weights/
 
 # LayoutLM-v3 model weights (large, downloaded locally)
 approaches/LayoutLM-v3/weights/
+
+# MinerU VLM weights (large, downloaded locally)
+approaches/MinerU/weights/
+
+# DeepSeek-OCR VLM weights (large, downloaded locally)
+approaches/DeepSeek-OCR/weights/
 
 
 results_*/

@@ -1,0 +1,34 @@
+# ---------------------------------------------------------------------------
+# DeepSeek-OCR — layout detection (approaches/DeepSeek-OCR/infer.py)
+#
+# Установка одним шагом (в новом venv):
+#   pip install -r requirements.txt
+#
+# ВАЖНО: transformers закреплён на 4.46.3. Remote-код модели
+# (modeling_deepseekocr.py / modeling_deepseekv2.py) написан под эту версию;
+# на transformers 5.x импорт падает с
+#   ImportError: cannot import name 'LlamaFlashAttention2'
+# ---------------------------------------------------------------------------
+
+# --- PyTorch (PyPI-сборка torch 2.6.0 на Linux x86_64 = CUDA 12.4) ---
+torch==2.6.0
+torchvision==0.21.0
+
+# --- ядро VLM (совместимость с remote-кодом DeepSeek-OCR) ---
+transformers==4.46.3
+tokenizers==0.20.3
+
+# --- зависимости remote-кода модели (импортируются напрямую) ---
+einops
+addict
+easydict
+tqdm
+
+# --- изображения и тензоры ---
+Pillow
+numpy
+safetensors
+
+# --- инференс подхода: PDF -> страницы, скачивание весов ---
+pdf2image          # требует системный poppler-utils (apt install poppler-utils)
+huggingface_hub

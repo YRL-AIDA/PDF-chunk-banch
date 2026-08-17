@@ -259,3 +259,9 @@ python3 -c "import json; d=json.load(open('results_<Model>_publaynet/<file>.json
 ## Эталонные реализации
 
 - `approaches/DiT/` — нативный запуск, Detectron2 + ditod (рабочий).
+- `approaches/MinerU/` — VLM-детекция макета (transformers Qwen2-VL), промпт
+  `Layout Detection:` + маппинг словаря MinerU в PubLayNet.
+- `approaches/DeepSeek-OCR/` — VLM-детекция макета через **prompt-based
+  grounding** (`<|grounding|>`): классы запрашиваются промптом `LAYOUT_PROMPT`
+  (в начале `infer.py`), а не маппятся из словаря модели. Не относится к
+  unilm, поэтому план из этого README (Detectron2) для него не используется.
