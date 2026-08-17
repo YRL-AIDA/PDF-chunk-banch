@@ -244,3 +244,5 @@ results_*/
 output/
 unilm/
 specs/
+res_*
+rez_*
