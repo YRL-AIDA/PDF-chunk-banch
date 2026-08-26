@@ -21,15 +21,10 @@ echo "Destination: $DEST_DIR"
 
 mkdir -p "$DEST_DIR"
 
-if command -v huggingface-cli >/dev/null 2>&1; then
-    huggingface-cli download "$REPO" --local-dir "$DEST_DIR"
-else
-    # Fallback: use the huggingface_hub Python API from the active interpreter.
-    python - <<PY
+python - <<PY
 from huggingface_hub import snapshot_download
 p = snapshot_download(repo_id="$REPO", local_dir="$DEST_DIR")
 print("Downloaded to", p)
 PY
-fi
 
 echo "Done."

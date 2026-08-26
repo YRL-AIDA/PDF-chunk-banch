@@ -1,3 +1,20 @@
+# Установка
+
+1) Скланировал репозиторий проекта
+git clone https://github.com/YRL-AIDA/PDF-chunk-banch.git
+2) создал env
+python3 -m venv env
+3) в папке approaches склонировал unilm
+git clone https://github.com/microsoft/unilm.git approaches/unilm
+4) установил python hf
+python -m pip install huggingface_hub
+5) скачал веса для LayoutLM-v3 (сначала отладим на нем)
+6) nvcc --version узнать версию CUDA
+6) python -m pip install torch torchvision --index-url https://download.pytorch.org/whl/cu{118}
+7) установка detectron2
+pip install --no-build-isolation 'git+https://github.com/facebookresearch/detectron2.git'
+8) python -m pip install pdf2image timm transformers
+
 # Как запускать модели из microsoft/unilm — общий план
 
 Этот файл — воспроизводимая инструкция для агентов, которые запускают модели

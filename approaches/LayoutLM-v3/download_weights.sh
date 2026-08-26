@@ -21,15 +21,11 @@ mkdir -p "$DEST_DIR"
 
 for FILE in "${FILES[@]}"; do
     echo "  fetching $FILE ..."
-    if command -v huggingface-cli >/dev/null 2>&1; then
-        huggingface-cli download "$REPO" "$FILE" --local-dir "$DEST_DIR"
-    else
-        python - <<PY
+    python - <<PY
 from huggingface_hub import hf_hub_download
 p = hf_hub_download(repo_id="$REPO", filename="$FILE", local_dir="$DEST_DIR")
 print("  ->", p)
 PY
-    fi
 done
 
 echo "Done."
