@@ -265,6 +265,9 @@ def main() -> None:
 
     for i, path in enumerate(files, start=1):
         json_path = results_dir / f"{path.stem}.json"
+        if json_path.exists():
+            print(f'[{i}/{total}] exists: {json_path.name} ')
+            continue
         try:
             if path.suffix.lower() in PDF_EXTS:
                 result = infer_pdf(path, predictor, args.dpi)
