@@ -241,6 +241,7 @@ approaches/DeepSeek-OCR/weights/
 
 
 results_*/
+results_*
 output/
 unilm/
 specs/
