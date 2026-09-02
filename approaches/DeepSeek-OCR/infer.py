@@ -38,6 +38,9 @@ import torch
 from pdf2image import convert_from_path
 from PIL import Image
 
+import time
+
+
 # =============================================================================
 # LAYOUT PROMPT — kept at the very top of the file on purpose, so it is easy to
 # edit in one place.
@@ -220,7 +223,8 @@ def _predict_layout_text(
 
     out_dir = work_dir / "out"
     out_dir.mkdir(parents=True, exist_ok=True)
-
+    
+    st = time.time()
     raw = model.infer(
         tokenizer,
         prompt=LAYOUT_PROMPT,
@@ -231,6 +235,7 @@ def _predict_layout_text(
         image_size=image_size,
         crop_mode=crop_mode,
     )
+    print(f'model.infer {time.time()-st:.4f} sec.')
     return raw or ""
 
 
@@ -422,11 +427,15 @@ def predict_image(
     crop_mode: bool = False,
 ) -> dict:
     h, w = img_array.shape[:2]
+    st = time.time()
     raw = _predict_layout_text(
         model, tokenizer, img_array, work_dir,
         base_size=base_size, image_size=image_size, crop_mode=crop_mode,
     )
+    print(f'raws {time.time()-st:.4f} sec.')
+    st = time.time()
     regions = parse_layout_output(raw)
+    print(f'regs {time.time()-st:.4f} sec.')
     return {"num": 1, "regions": regions, "metainfo": {"height": h, "width": w}}
 
 
